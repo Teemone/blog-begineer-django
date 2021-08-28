@@ -1,0 +1,28 @@
+<!-- CSS only -->
+
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Django blog</title>
+</head>
+<body>
+
+    <header>
+    <h1 class="bg-primary"><a class="text-decoration-none fw-bold badge bg-primary text-white" href="{% url 'home' %}">Django blog</a><a class="btn btn-primary" href="{% url 'post_new' %}">Add a new post</a></h1>
+    
+    </header>
+    
+    {% if user.is_authenticated %}
+        <p>Hi {{ user.username }}!</p>
+        <p><a href="{% url 'logout' %}">Log out</a></p>
+    {% else %}
+        <p class="bg-danger p-3">You are not logged in.</p>
+        <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+
+    <div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+</html>
